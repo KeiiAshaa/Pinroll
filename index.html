@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PinRoll - Pinjam Rollan JasTer</title>
+
+    <!-- FAVICON Y2K PETIR PINROLL -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><rect width=%22100%22 height=%22100%22 rx=%2220%22 fill=%22%231e293b%22/><text y=%22.9em%22 font-size=%2280%22>⚡</text></svg>">
+    
+    <link href="https://fonts.googleapis.com/css2?family=VT323&family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --navy-deep: #0f172a;
+            --denim-dark: #1e293b;
+            --denim-blue: #3b82f6;
+            --pastel-blue: #bae6fd;
+            --pastel-pink: #fbcfe8;
+            --pastel-yellow: #fef08a;
+            --white: #ffffff;
+            --border-y2k: 3px solid var(--navy-deep);
+            --shadow-y2k: 5px 5px 0px var(--navy-deep);
+            --shadow-hover: 9px 9px 0px var(--navy-deep);
+        }
+
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: 'Plus Jakarta Sans', sans-serif; }
+        body { background-color: #cbd5e1; background-image: radial-gradient(var(--denim-blue) 12%, transparent 13%), radial-gradient(var(--pastel-pink) 12%, transparent 13%); background-size: 28px 28px; background-position: 0 0, 14px 14px; color: var(--navy-deep); padding-bottom: 50px; }
+
+        /* NAVBAR INTERAKTIF UNTUK SISWA */
+        header { background: var(--denim-dark); border-bottom: var(--border-y2k); padding: 12px 5%; display: flex; justify-content: space-between; align-items: center; position: sticky; top: 0; z-index: 100; }
+        .logo { font-family: 'VT323', monospace; font-size: 2.3rem; color: var(--pastel-pink); text-decoration: none; letter-spacing: 2px; text-shadow: 2px 2px 0px var(--navy-deep); transition: all 0.25s ease; display: inline-block; padding: 2px 8px; border-radius: 8px; }
+        .logo:hover { transform: scale(1.1) rotate(-3deg); color: var(--pastel-yellow); background: rgba(255,255,255,0.05); }
+
+        .nav-links { display: flex; gap: 10px; align-items: center; }
+        .nav-btn { background: var(--pastel-blue); color: var(--navy-deep); text-decoration: none; font-weight: 800; font-size: 0.85rem; padding: 8px 14px; border: 2px solid var(--navy-deep); border-radius: 10px; box-shadow: 3px 3px 0px var(--navy-deep); transition: all 0.2s ease; }
+        .nav-btn:hover { transform: translate(-3px, -3px) rotate(1deg); box-shadow: 6px 6px 0px var(--navy-deep); background: var(--pastel-yellow); }
+
+        .badge-jaster { background: var(--pastel-yellow); color: var(--navy-deep); padding: 8px 14px; border-radius: 20px; border: 2px solid var(--navy-deep); font-weight: 800; font-size: 0.85rem; box-shadow: 3px 3px 0px var(--navy-deep); cursor: pointer; transition: all 0.2s ease; }
+        .badge-jaster:hover { transform: translate(-3px, -3px) rotate(2deg); background: var(--pastel-pink); }
+
+        .container { max-width: 900px; margin: 30px auto; padding: 0 20px; }
+
+        /* HERO & CARDS */
+        .hero { background: var(--pastel-blue); border: var(--border-y2k); box-shadow: var(--shadow-y2k); border-radius: 16px; padding: 30px; text-align: center; margin-bottom: 30px; transition: all 0.25s ease; }
+        .hero:hover { transform: translateY(-4px); box-shadow: var(--shadow-hover); background: #a5f3fc; }
+        .hero h1 { font-size: 1.9rem; margin-bottom: 8px; }
+
+        .section-title { font-family: 'VT323', monospace; font-size: 2.2rem; background: var(--pastel-pink); display: inline-block; padding: 4px 18px; border: var(--border-y2k); box-shadow: 3px 3px 0px var(--navy-deep); margin-bottom: 20px; transition: all 0.2s ease; }
+        .section-title:hover { transform: translate(-3px, -3px) rotate(-1deg); background: var(--pastel-yellow); }
+
+        .card-box { background: var(--white); border: var(--border-y2k); box-shadow: var(--shadow-y2k); border-radius: 14px; padding: 25px; margin-bottom: 35px; transition: all 0.25s ease; }
+        .card-box:hover { transform: translateY(-3px); box-shadow: var(--shadow-hover); }
+
+        .latar-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; margin-top: 15px; }
+        .latar-item { background: #f1f5f9; border: 2px solid var(--navy-deep); border-radius: 10px; padding: 15px; box-shadow: 2px 2px 0px var(--navy-deep); transition: all 0.2s ease; }
+        .latar-item:hover { background: #e2e8f0; transform: translate(-2px, -2px); box-shadow: 4px 4px 0px var(--navy-deep); }
+
+        /* RINGKASAN HARGA */
+        .harga-preview { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 15px; margin-top: 10px; }
+        .harga-card { background: var(--pastel-yellow); border: 2px solid var(--navy-deep); border-radius: 10px; padding: 15px; text-align: center; box-shadow: 3px 3px 0px var(--navy-deep); transition: all 0.2s ease; }
+        .harga-card:hover { transform: translate(-3px, -3px); box-shadow: 6px 6px 0px var(--navy-deep); }
+
+        /* CONTACT PERSON */
+        .cp-container { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px; }
+        .cp-card { background: var(--denim-dark); color: var(--white); border: 2px solid var(--navy-deep); box-shadow: 4px 4px 0px var(--navy-deep); padding: 12px; border-radius: 10px; text-decoration: none; transition: all 0.2s ease; }
+        .cp-card:hover { background: var(--denim-blue); transform: translate(-3px, -3px); box-shadow: 7px 7px 0px var(--navy-deep); }
+
+        /* TOMBOL SEWA UTAMA */
+        .btn-cta { display: block; width: 100%; text-align: center; background: #4ade80; color: var(--navy-deep); text-decoration: none; font-weight: 800; font-size: 1.25rem; padding: 18px; border: var(--border-y2k); border-radius: 14px; box-shadow: 6px 6px 0px var(--navy-deep); transition: all 0.2s ease; margin-top: 25px; }
+        .btn-cta:hover { background: #22c55e; transform: translate(-4px, -4px); box-shadow: 10px 10px 0px var(--navy-deep); letter-spacing: 0.5px; }
+    </style>
+</head>
+<body>
+
+    <header>
+        <a href="index.html" class="logo">⚡ PinRoll</a>
+        <div class="nav-links">
+            <a href="#latar" class="nav-btn">💡 Info</a>
+            <a href="#harga" class="nav-btn">🏷️ Harga</a>
+            <a href="#cp" class="nav-btn">📲 CP</a>
+            <div class="badge-jaster">JasTer</div>
+        </div>
+    </header>
+
+    <div class="container">
+        <!-- HERO JARGON -->
+        <div class="hero">
+            <h1>"Murid banyak tapi colokannya cuma satu?"</h1>
+            <p>PinRoll aja di JasTer. Pasti Josjiss! 🔌✨</p>
+        </div>
+
+        <!-- LATAR BELAKANG & INOVASI -->
+<h2 class="section-title" id="latar">✦ CERITA DI BALIK PINROLL</h2>
+<div class="card-box">
+    <p style="line-height: 1.8; margin-bottom: 20px; text-align: justify;">
+        Di tengah padatnya kegiatan belajar di sekolah, kebutuhan akan ponsel dan perangkat digital terus meningkat. Namun, masalah klasik sering kali muncul: <strong>baterai habis di pertengahan jam pelajaran, sementara jumlah colokan di kelas sangat terbatas</strong>. Situasi ini membuat siswa berebutan stop kontak atau bahkan terpaksa menunda pekerjaan tugas.
+    </p>
+    <p style="line-height: 1.8; margin-bottom: 20px; text-align: justify;">
+        Melihat fenomena tersebut, kami dari tim <strong>PPLG (Pengembangan Perangkat Lunak dan Gim)</strong> menciptakan <strong>PinRoll (Pinjam Rollan)</strong>[cite: 4, 8]. PinRoll bukan sekadar menyewakan terminal listrik tambahan[cite: 4], melainkan menghadirkan sistem peminjaman yang praktis, cepat, dan terorganisir berbasis pemesanan digital[cite: 5, 8]. Cukup scan QR code, pilih paket, dan colokan tambahan siap dipakai bersama-sama di kelas!
+    </p>
+    <div class="latar-grid">
+        <div class="latar-item">
+            <h4 style="color: var(--denim-blue); margin-bottom: 5px;">⚡ Masalah Utama</h4>
+            <p style="font-size: 0.9rem;">Stop kontak terbatas, baterai HP habis saat KBM berlangsung[cite: 9].</p>
+        </div>
+        <div class="latar-item">
+            <h4 style="color: var(--denim-blue); margin-bottom: 5px;">💡 Solusi Praktis</h4>
+            <p style="font-size: 0.9rem;">Sewa kabel rollan tambahan langsung diantar ke kelas[cite: 4, 9].</p>
+        </div>
+        <div class="latar-item">
+            <h4 style="color: var(--denim-blue); margin-bottom: 5px;">💻 Kemudahan Digital</h4>
+            <p style="font-size: 0.9rem;">Proses sewa cepat tanpa ribet via Scan QR Code & Web[cite: 5, 8].</p>
+        </div>
+    </div>
+</div>
+
+        <!-- ESTIMASI HARGA -->
+        <h2 class="section-title" id="harga">✦ TARIF SEWA SEKARANG</h2>
+        <div class="card-box">
+            <div class="harga-preview">
+                <div class="harga-card">
+                    <h3>Sewa Per Jam</h3>
+                    <p style="font-size: 1.5rem; font-weight: 800; color: var(--denim-blue); margin: 8px 0;">Rp 3.000</p>
+                    <span style="font-size: 0.85rem;">Pas buat jam kosong</span>
+                </div>
+                <div class="harga-card" style="background: var(--pastel-pink);">
+                    <h3>Paket Mingguan</h3>
+                    <p style="font-size: 1.5rem; font-weight: 800; color: var(--denim-blue); margin: 8px 0;">Rp 50.000</p>
+                    <span style="font-size: 0.85rem;">Bebas sekelas seminggu</span>
+                </div>
+            </div>
+
+            <!-- TOMBOL DIARAHKAN KE sewa.html -->
+            <a href="sewa.html" class="btn-cta">SEWA SEKARANG🚀</a>
+        </div>
+
+        <!-- CONTACT PERSON -->
+        <h2 class="section-title" id="cp">✦ CONTACT PERSON</h2>
+        <div class="cp-container">
+            <a href="https://wa.me/6282115678294" target="_blank" class="cp-card">
+                <div style="font-weight: 700;">Keisha Nur Asyifa</div>
+                <div style="color: var(--pastel-yellow); font-family: monospace; font-size: 0.9rem;">📲 +62 821-1567-8294</div>
+            </a>
+            <a href="https://wa.me/628813299836" target="_blank" class="cp-card">
+                <div style="font-weight: 700;">Arin Regina Putri</div>
+                <div style="color: var(--pastel-yellow); font-family: monospace; font-size: 0.9rem;">📲 +62 881-3299-836</div>
+            </a>
+            <a href="https://wa.me/6285878505289" target="_blank" class="cp-card">
+                <div style="font-weight: 700;">Mario Mutawakil M.</div>
+                <div style="color: var(--pastel-yellow); font-family: monospace; font-size: 0.9rem;">📲 +62 858-7850-5289</div>
+            </a>
+            <a href="https://wa.me/6287815990414" target="_blank" class="cp-card">
+                <div style="font-weight: 700;">Muhamad Faatih A.</div>
+                <div style="color: var(--pastel-yellow); font-family: monospace; font-size: 0.9rem;">📲 +62 878-1599-0414</div>
+            </a>
+        </div>
+    </div>
+
+</body>
+</html>
